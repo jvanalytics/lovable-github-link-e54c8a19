@@ -6,6 +6,7 @@ interface AppContextType {
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
   savedLooks: Look[];
   toggleSavedLook: (look: Look) => void;
   isSaved: (id: string) => boolean;
@@ -53,6 +54,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const isSaved = (id: string) => savedLooks.some((l) => l.id === id);
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -60,6 +65,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
         savedLooks,
         toggleSavedLook,
         isSaved,

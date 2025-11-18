@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useApp } from "@/contexts/AppContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity } = useApp();
+  const navigate = useNavigate();
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -108,7 +109,7 @@ const Cart = () => {
                     <span>${subtotal.toFixed(2)}</span>
                   </div>
                 </div>
-                <Button className="w-full" size="lg">
+                <Button className="w-full" size="lg" onClick={() => navigate("/checkout")}>
                   Proceed to Checkout
                 </Button>
                 <p className="text-xs text-muted-foreground text-center mt-4">

@@ -25,3 +25,15 @@ export interface StyleQuizAnswer {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export interface Order {
+  orderId: string;
+  items: CartItem[];
+  total: number;
+  customerInfo: {
+    name: string;
+    email: string;
+    address: string;
+  };
+  orderDate: Date;
+}
